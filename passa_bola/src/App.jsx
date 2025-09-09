@@ -7,8 +7,8 @@ import HomeRec from './pages/pages-rec/HomeRec'
 import Fase1 from './pages/at-fase-1';
 import Fase2 from './pages/at-fase-2';
 import Fase3 from './pages/at-fase-3';
-import RecFase1 from './pages/rec-fase-1'
-
+import RFase1 from './pages/re-fase-1';
+import RFase2 from './pages/re-fase-2';
 
 function App() {
   return (
@@ -19,12 +19,13 @@ function App() {
       <Route path="/at-fase-1" element={<Fase1 />} />
       <Route path="/at-fase-2" element={<Fase2 />} />
       <Route path="/at-fase-3" element={<Fase3 />} />
-      {/* CADASTRO RECRUTADOR */}
-      <Route path="/rec-fase-1" element={<RecFase1 />} />
-      {/* PAGINAS ATLETA */}
+      {/* PÁGINAS ATLETA */}
       <Route path="/home" element={<Home />} />
       {/* PAGINA RECRUTADOR */}
       <Route path="/homerec" element={<HomeRec />} />
+      {/* CADASTRO RECRUTADOR */}
+      <Route path="/re-fase-1" element={<RFase1 />} />
+      <Route path="/re-fase-2" element={<RFase2 />} />
     </Routes>
   );
 }
