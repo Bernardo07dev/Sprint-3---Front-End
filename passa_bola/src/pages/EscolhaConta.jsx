@@ -1,8 +1,9 @@
-// src/pages/EscolhaConta.jsx
 import logo from '../assets/icons/Logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export function EscolhaConta() {
+  const navigate = useNavigate();
+
   return (
     <div className="h-[100vh] flex justify-center bg-gray-100 text-black">
       <div className="w-full max-w-[420px] h-[100vh] md:h-auto flex flex-col justify-between bg-white p-10 rounded-lg shadow-md">
@@ -15,7 +16,7 @@ export function EscolhaConta() {
           <h1 className="text-xl font-semibold mb-4">Escolha o tipo de conta</h1>
           
           <div className="flex justify-center gap-2 w-full">
-            <button className="flex-1 flex flex-col cursor-pointer items-center p-4 bg-gray-50 rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-200">
+            <button onClick={() => navigate('/at-fase-1')} className="flex-1 flex flex-col cursor-pointer items-center p-4 bg-gray-50 rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-200">
               <p className="font-semibold text-base">Sou Atleta</p>
               <p className="text-[11px] text-gray-600">Mostre seu talento</p>
             </button>
@@ -29,9 +30,8 @@ export function EscolhaConta() {
           <p className="text-center text-sm text-gray-600 mt-5">
             Já tem conta?{' '}
             <Link to="/login" className="font-semibold text-blue-700 hover:underline">
-              Clique aqui
-            </Link>{' '}
-            e faça login
+              Clique aqui e faça login
+            </Link>
           </p>
         </div>
 

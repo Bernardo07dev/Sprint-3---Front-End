@@ -1,6 +1,13 @@
-import CampoTexto from "../compenentes/CampoTexto/CampoTexto";
+import { CampoTexto } from "../compenentes/CampoTexto/CampoTexto.jsx";
+import logo from '../assets/icons/Logo.svg';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const Login = () =>  {
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    console.log("Verificando os dados...");
+    navigate('/home'); 
+  };
   return (
     <div className="h-[100vh] flex justify-center bg-gray-100 text-black">
       <div className="w-full max-w-[420px] h-[100vh] md:h-auto flex flex-col justify-between bg-white p-10 rounded-lg shadow-md">
@@ -10,26 +17,34 @@ const Login = () =>  {
           </div>
 
           <div className='w-full flex flex-col items-center justify-center'>
-            <h1 className="text-xl font-semibold mb-4">Escolha o tipo de conta</h1>
+            <h1 className="text-xl font-semibold mb-4">Faça seu Login</h1>
             
-            <div className="flex justify-center gap-2 w-full">
-              <button className="flex-1 flex flex-col cursor-pointer items-center p-4 bg-gray-50 rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-200">
-                <p className="font-semibold text-base">Sou Atleta</p>
-                <p className="text-[11px] text-gray-600">Mostre seu talento</p>
-              </button>
+            <div className="flex-col justify-center gap-[4] items-center w-full">
+              <form action="">
+                <CampoTexto
+                  label="Email"
+                  type="email"
+                  placeholder="seuemail@exemplo.com"
+                />     
+              
+      
+                <CampoTexto
+                  label="Senha"
+                  type="text"
+                  placeholder="Digite sua senha"
+                />
 
-              <button className="flex-1 flex flex-col cursor-pointer items-center p-4 bg-gray-50 rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-200">
-                <p className="font-semibold text-base">Sou Recrutador</p>
-                <p className="text-[11px] text-gray-600">Encontre uma estrela</p>
-              </button>          
+                  <button onClick={handleLogin} type="submit" className="cursor-pointer w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded focus:outline-none focus:shadow-outline mt-4"> 
+                    Entrar
+                  </button>
+              </form>
             </div>
 
             <p className="text-center text-sm text-gray-600 mt-5">
-              Já tem conta?{' '}
-              <Link to="/login" className="font-semibold text-blue-700 hover:underline">
-                Clique aqui
-              </Link>{' '}
-              e faça login
+              Não tem conta?{' '}
+              <Link to="/" className="font-semibold text-blue-700 hover:underline">
+                Clique aqui e crie sua conta.
+              </Link>
             </p>
           </div>
 
