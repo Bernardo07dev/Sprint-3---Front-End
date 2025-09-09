@@ -1,13 +1,10 @@
 import { CampoTexto } from "../compenentes/CampoTexto/CampoTexto.jsx";
 import logo from '../assets/icons/Logo.svg';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () =>  {
   const navigate = useNavigate();
-  const handleLogin = () => {
-    console.log("Verificando os dados...");
-    navigate('/home'); 
-  };
+
   return (
     <div className="h-[100vh] flex justify-center bg-gray-100 text-black">
       <div className="w-full max-w-[420px] h-[100vh] md:h-auto flex flex-col justify-between bg-white p-10 rounded-lg shadow-md">
@@ -34,7 +31,7 @@ const Login = () =>  {
                   placeholder="Digite sua senha"
                 />
 
-                  <button onClick={handleLogin} type="submit" className="cursor-pointer w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded focus:outline-none focus:shadow-outline mt-4"> 
+                  <button onClick={() => navigate('/Home')} type="submit" className="cursor-pointer w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded focus:outline-none focus:shadow-outline mt-4"> 
                     Entrar
                   </button>
               </form>

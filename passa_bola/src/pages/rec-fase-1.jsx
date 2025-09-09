@@ -1,17 +1,17 @@
-import { Link, useNavigate } from 'react-router-dom';
 import { CampoTexto } from '../compenentes/CampoTexto/CampoTexto';
 import { NumFase } from "../compenentes/NumFase/NumFase";
+import { useNavigate } from 'react-router-dom';
 
-const Fase1 = () => {
+const RecFase1 = () =>{
     const navigate = useNavigate();
     const passoAtual = 1;
 
-    return (
+    return(
         <div className="h-full flex justify-center bg-gray-100 text-black">
             <div className="w-full max-w-[420px] h-[100vh] md:h-auto flex flex-col justify-between bg-white p-10 rounded-lg shadow-md">
                 <div className='w-full flex flex-col items-start justify-center'>
                     <NumFase passoAtual={passoAtual}></NumFase>
-                    <h1 className="text-xl font-semibold mb-4">Olá jogadora, preencha seus dados:</h1>
+                    <h1 className="text-xl font-semibold mb-4">Olá recrutador, preencha seus dados:</h1>
                     <div className="flex-col justify-center gap-[4] items-center w-full">
                         <form action="">
                             <CampoTexto
@@ -48,8 +48,7 @@ const Fase1 = () => {
                 </div>
             </div> 
         </div>
-    );
-
+    )
 }
 
-export default Fase1;
+export default RecFase1;

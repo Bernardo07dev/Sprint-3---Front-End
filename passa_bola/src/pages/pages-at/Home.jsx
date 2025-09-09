@@ -1,4 +1,4 @@
-import logo from '../assets/icons/Logo.svg';
+import logo from '../../assets/icons/Logo.svg';
 import { Link } from 'react-router-dom';
 
 const Home = () =>  {
@@ -7,7 +7,7 @@ const Home = () =>  {
       <div className="w-full max-w-[420px] h-[100vh] md:h-auto flex flex-col justify-between bg-white p-10 rounded-lg shadow-md">
         
         <div className="flex justify-center">
-            
+            <h1>TESTE</h1>
         </div>
 
       </div>

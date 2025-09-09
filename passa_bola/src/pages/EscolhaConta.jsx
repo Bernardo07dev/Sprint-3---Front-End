@@ -21,7 +21,7 @@ export function EscolhaConta() {
               <p className="text-[11px] text-gray-600">Mostre seu talento</p>
             </button>
 
-            <button className="flex-1 flex flex-col cursor-pointer items-center p-4 bg-gray-50 rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-200">
+            <button onClick={() => navigate('/rec-fase-1')} className="flex-1 flex flex-col cursor-pointer items-center p-4 bg-gray-50 rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-200">
               <p className="font-semibold text-base">Sou Recrutador</p>
               <p className="text-[11px] text-gray-600">Encontre uma estrela</p>
             </button>          
