@@ -1,18 +1,26 @@
-export function NumFase({ label, type, placeholder }) {
+import './NumFase.css'
 
-  return (
-    <div className="flex justify-center items-center">
-        <div>
-            <p>1</p>
-        </div>
+export function NumFase(){
 
-        <div className="b">
-            <p>2</p>
-        </div>
+    return (
+        <div className="w-full flex justify-between items-center p-4 gap-2 mb-4">
+            <div className="bg-gray-100 px-4 py-2 rounded-full border-[#53535300] ativo ${passoAtual === 1 ? 'ativo' : ''}">
+                <p>1</p>
+            </div>
 
-        <div>
-            <p>3</p>
+            <div className="flex-grow h-1 bg-gray-100"></div>
+
+            <div className="bg-gray-100 px-4 py-2 rounded-full border-[#53535300] ${passoAtual === 2 ? 'ativo' : ''}">
+                <p>2</p>
+            </div>
+
+            <div className="flex-grow h-1 bg-gray-100"></div>
+
+            <div className="bg-gray-100 px-4 py-2 rounded-full border-[#53535300] ${passoAtual === 3 ? 'ativo' : ''}">
+                <p>3</p>
+            </div>
         </div>
-    </div>
-    );
+  );
 };
+
+export default NumFase; 

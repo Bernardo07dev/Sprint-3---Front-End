@@ -3,9 +3,8 @@ import { CampoTexto } from '../compenentes/CampoTexto/CampoTexto';
 import { NumFase } from "../compenentes/NumFase/NumFase";
 import React, { useState } from 'react';
 
-const Fase1 = () => {
-    const navigate = useNavigate();
-    const [passoAtual, setPassoAtual] = useState(1);
+const Fase2 = () => {
+    const [passoAtual, setPassoAtual] = useState(2);
 
     return (
         <div className="h-full flex justify-center bg-gray-100 text-black">
@@ -41,7 +40,7 @@ const Fase1 = () => {
                             placeholder="Crie sua senha"
                         />
 
-                        <button onClick={() => navigate('/at-fase-2')} type="button" className="w-full p-3 my-2 cursor-pointer justify-center items-center rounded-sm border-2 border-[#0000001d] font-semibold duration-1000 hover:scale-[1.05]"> 
+                        <button onClick={() => setPassoAtual(passoAtual + 1)} type="button" className="w-full p-3 my-2 cursor-pointer justify-center items-center rounded-sm border-2 border-[#0000001d] font-semibold duration-1000 hover:scale-[1.05]"> 
                             Próximo
                         </button>
                         </form>
@@ -53,4 +52,4 @@ const Fase1 = () => {
 
 }
 
-export default Fase1;
+export default Fase2;
