@@ -9,6 +9,7 @@ import Fase2 from './pages/at-fase-2';
 import Fase3 from './pages/at-fase-3';
 import RFase1 from './pages/re-fase-1';
 import RFase2 from './pages/re-fase-2';
+import RFase3 from './pages/re-fase-3';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       {/* CADASTRO RECRUTADOR */}
       <Route path="/re-fase-1" element={<RFase1 />} />
       <Route path="/re-fase-2" element={<RFase2 />} />
+      <Route path="/re-fase-3" element={<RFase3 />} />
     </Routes>
   );
 }

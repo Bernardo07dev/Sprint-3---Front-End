@@ -1,17 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { CampoTexto } from '../compenentes/CampoTexto/CampoTexto';
 import { NumFase } from "../compenentes/NumFase/NumFase";
-import React, { useState } from 'react';
 
 const RFase1 = () => {
     const navigate = useNavigate();
-    const [passoAtual, setPassoAtual] = useState(1);
+    const passoAtual = 1;
+    const Link1 = '/re-fase-1';
+    const Link2 = '/re-fase-2';
+    const Link3 = '/re-fase-3';
 
     return (
-        <div className="h-full flex justify-center bg-gray-100 text-black">
+        <div className="min-h-screen flex justify-center bg-gray-100 text-black">
             <div className="w-full max-w-[420px] h-[100vh] md:h-auto flex flex-col justify-between bg-white p-10 rounded-lg shadow-md">
                 <div className='w-full flex flex-col items-start justify-center'>
-                    <NumFase passoAtual={passoAtual}></NumFase>
+                    <NumFase passoAtual={passoAtual} Link1 = {Link1} Link2 = {Link2} Link3 = {Link3}/>
                     <h1 className="text-xl font-semibold mb-4">Olá recrutador, preencha seus dados</h1>
                     <div className="flex-col justify-center gap-[4] items-center w-full">
                         <form action="">

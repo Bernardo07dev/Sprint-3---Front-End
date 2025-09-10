@@ -1,7 +1,7 @@
 export function CampoCheckbox({ label, opcao1, opcao2 }) {
   return (
     <div>
-        <p className="text-gray-600 text-[17px] mb-2">{label}</p>
+        <p className="text-gray-600 text-[16px] mb-2">{label}</p>
         <div className="flex flex-row gap-4">
             <div className="text-gray-600 text-[16px] mb-2">
                 <input type="checkbox" id="opcao1" value={opcao1} />

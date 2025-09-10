@@ -7,12 +7,15 @@ import { CampoArea } from '../compenentes/CampoArea/CampoArea';
 const Fase2 = () => {
     const passoAtual = 2;
     const navigate = useNavigate();
+    const Link1 = '/at-fase-1';
+    const Link2 = '/at-fase-2';
+    const Link3 = '/at-fase-3';
 
     return (
         <div className="h-full flex justify-center bg-gray-100 text-black">
             <div className="w-full max-w-[420px] h-[100vh] md:h-auto flex flex-col justify-between bg-white p-10 rounded-lg shadow-md">
                 <div className='w-full flex flex-col items-start justify-center'>
-                    <NumFase passoAtual={passoAtual}></NumFase>
+                    <NumFase passoAtual={passoAtual} Link1 = {Link1} Link2 = {Link2} Link3 = {Link3}/>
                     <h1 className="text-xl font-semibold mb-4">Agora fale sobre você, como jogadora:</h1>
                     <div className="flex-col justify-center gap-[4] items-center w-full">
                         <form action="">
