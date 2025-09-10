@@ -10,6 +10,7 @@ import Fase3 from './pages/at-fase-3';
 import RFase1 from './pages/re-fase-1';
 import RFase2 from './pages/re-fase-2';
 import RFase3 from './pages/re-fase-3';
+import RFase4 from './pages/re-fase-4';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <Route path="/re-fase-1" element={<RFase1 />} />
       <Route path="/re-fase-2" element={<RFase2 />} />
       <Route path="/re-fase-3" element={<RFase3 />} />
+      <Route path="/re-fase-4" element={<RFase4 />} />
     </Routes>
   );
 }
