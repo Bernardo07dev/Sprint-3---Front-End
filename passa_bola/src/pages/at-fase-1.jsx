@@ -10,7 +10,7 @@ const Fase1 = () => {
     const Link3 = '/at-fase-3';
 
     return (
-        <div className="h-full flex justify-center bg-gray-100 text-black">
+        <div className="min-h-screen flex justify-center bg-gray-100 text-black">
             <div className="w-full max-w-[420px] md:h-auto flex flex-col justify-between bg-white p-10 rounded-lg shadow-md">
                 <div className='w-full flex flex-col items-start justify-center'>
                     <NumFase passoAtual={passoAtual} Link1 = {Link1} Link2 = {Link2} Link3 = {Link3}/>
