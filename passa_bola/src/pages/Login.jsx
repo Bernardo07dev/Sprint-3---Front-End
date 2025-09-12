@@ -31,7 +31,7 @@ const Login = () =>  {
                   placeholder="Digite sua senha"
                 />
 
-                  <button onClick={() => navigate('/Home')} type="submit" className="cursor-pointer w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded focus:outline-none focus:shadow-outline mt-4"> 
+                  <button onClick={() => navigate('/home')} type="submit" className="cursor-pointer w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded focus:outline-none focus:shadow-outline mt-4"> 
                     Entrar
                   </button>
               </form>
