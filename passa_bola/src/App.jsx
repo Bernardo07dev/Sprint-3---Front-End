@@ -12,6 +12,8 @@ import RFase2 from './pages/re-fase-2';
 import RFase3 from './pages/re-fase-3';
 import RFase4 from './pages/re-fase-4';
 import Propostas from './pages/pages-at/Propostas';
+import Noticias from './pages/pages-at/Noticias';
+import Conta from './pages/pages-at/Conta';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
       {/* PÁGINAS ATLETA */}
       <Route path="/home" element={<Home />} />
       <Route path="/propostas" element={<Propostas />} />
+      <Route path="/noticias" element={<Noticias />} />
+      <Route path="/conta" element={<Conta />} />
       {/* PAGINA RECRUTADOR */}
       <Route path="/homerec" element={<HomeRec />} />
       {/* CADASTRO RECRUTADOR */}

@@ -1,7 +1,7 @@
 import notif from '../../assets/icons/notif.svg';
 import jogadora from '../../assets/images/jogadora.png';
 import barra from '../../assets/icons/barra.svg';
-import palm from '../../assets/icons/Palm.svg'
+import palm from '../../assets/icons/Palm.svg';
 import corin from '../../assets/icons/Corin.svg'
 import Footer from '../../compenentes/Footer/Footer';
 import Card from '../../compenentes/Card.jsx/Card';
@@ -45,7 +45,7 @@ const Home = () =>  {
               {/* API NOTÍCIAS */} 
             </div>
         </div>
-        <Footer></Footer>
+        <Footer pg1='/home' pg2='/propostas' pg3='/noticias' pg4='/conta'></Footer>
       </main>
     </div>
   )
