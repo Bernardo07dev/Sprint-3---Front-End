@@ -1,4 +1,4 @@
-import Home from '../../assets/icons/Home.svg'; 
+import Home from '../../assets/icons/home.svg'; 
 import Prop from '../../assets/icons/prop.svg';
 import User from '../../assets/icons/user.svg';
 import News from '../../assets/icons/news.svg';
