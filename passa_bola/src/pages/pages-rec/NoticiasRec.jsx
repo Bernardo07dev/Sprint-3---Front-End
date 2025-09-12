@@ -14,7 +14,7 @@ const NoticiasRec = () =>  {
           {/* API DAS NOTICIAS DE FUTEBOL*/}
 
         </div>
-        <Footer pg1='/homerec' pg2='/propostasrec' pg3='/noticiasrec' pg4='/contarec'></Footer>
+        <Footer pg1='/HomeRec' pg2='/propostasrec' pg3='/noticiasrec' pg4='/contarec'></Footer>
       </main>
     </div>
   )
