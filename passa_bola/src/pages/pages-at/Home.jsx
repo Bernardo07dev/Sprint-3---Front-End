@@ -1,12 +1,16 @@
-import notif from '../../assets/icons/notif.svg';
-import jogadora from '../../assets/images/jogadora.png';
-import barra from '../../assets/icons/barra.svg';
-import palm from '../../assets/icons/Palm.svg';
-import corin from '../../assets/icons/Corin.svg'
-import Footer from '../../compenentes/Footer/Footer';
-import Card from '../../compenentes/Card.jsx/Card';
+import { useNavigate } from "react-router-dom"; // para navegação
+import notif from "../../assets/icons/notif.svg";
+import jogadora from "../../assets/images/jogadora.png";
+import barra from "../../assets/icons/barra.svg";
+import palm from "../../assets/icons/Palm.svg";
+import corin from "../../assets/icons/Corin.svg";
+import Footer from "../../compenentes/Footer/Footer";
+import Card from "../../compenentes/Card.jsx/Card";
+import Noticia from "../../compenentes/noticias_Api/Noticias";
 
-const Home = () =>  {
+const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen flex justify-center bg-gray-100 text-black">
       <main className="w-full max-w-[420px] min-h-[100vh] md:h-auto flex flex-col bg-white rounded-lg shadow-md ">
@@ -27,28 +31,50 @@ const Home = () =>  {
               <p className="font-light mb-1">07/05/2007</p>
               <p className="text-[15px]">Perfil Incompleto</p>
               <img src={barra} alt="" />
-              <a className=" italic underline text-[13px] text-gray-600" href="">Completar Perfil</a>
+              <a className="italic underline text-[13px] text-gray-600" href="">
+                Completar Perfil
+              </a>
             </div>
           </div>
 
-            <h1 className="font-semibold text-lg">Dica do dia</h1>
-            <p className="font-light mb-4">Recrutadores têm pouco tempo. Coloque suas <strong>3 melhores jogadas nos primeiros 30 segundos do seu vídeo de highlights.</strong></p>
+          <h1 className="font-semibold text-lg">Dica do dia</h1>
+          <p className="font-light mb-4">
+            Recrutadores têm pouco tempo. Coloque suas{" "}
+            <strong>
+              3 melhores jogadas nos primeiros 30 segundos do seu vídeo de
+              highlights.
+            </strong>
+          </p>
 
-            <h1 className="font-semibold text-lg">Peneiras perto de você</h1>
+          <h1 className="font-semibold text-lg">Peneiras perto de você</h1>
+          <Card
+            icon={palm}
+            title="Palmeiras Futebol Feminino"
+            desc="Sub-15 e Sub-17 / 06 de Agosto de 2025"
+          />
+          <Card
+            icon={corin}
+            title="Corinthians Futebol Feminino"
+            desc="Sub-17 e Sub-20 / 25 de Julho 2025"
+          />
+          {/* Notícias */}
+          <div className="pb-20 pt-6">
+            <h1 className="font-semibold text-lg">Notícias Passa Bola</h1>
+            <Noticia limit={2} />
 
-            <Card icon={palm} title="Palmeiras Futebol Feminino" desc="Sub-15 e Sub-17 / 06 de Agosto de 2025"></Card>
-            <Card icon={corin} title="Corinthians Futebol Feminino" desc="Sub-17 e Sub-20 / 25 de Julho 2025"></Card>
-
-
-            <div className='pb-20 pt-6'>
-              <h1 className="font-semibold text-lg">Notícias Passa Bola</h1>
-              {/* API NOTÍCIAS */} 
-            </div>
+            <button
+              onClick={() => navigate("/Noticias")}
+              className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Ver mais
+            </button>
+          </div>
         </div>
-        <Footer pg1='/home' pg2='/propostas' pg3='/noticias' pg4='/conta'></Footer>
+
+        <Footer pg1="/home" pg2="/propostas" pg3="/noticias" pg4="/conta" />
       </main>
     </div>
-  )
-}
+  );
+};
 
 export default Home;
