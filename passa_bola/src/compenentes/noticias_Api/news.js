@@ -1,16 +1,16 @@
 // /api/noticias.js
 export default async function handler(req, res) {
-  // Chave da NewsAPI armazenada em variáveis de ambiente no Vercel
-  const API_KEY = process.env.NEWS_API_KEY;
-
+  const API_KEY = "5112f9d2c6d5408590bc522c8da0ea3f"; // exposta aqui
   const url = `https://newsapi.org/v2/everything?q=futebol+feminino&language=pt&sortBy=publishedAt&apiKey=${API_KEY}`;
 
   try {
     const response = await fetch(url);
     const data = await response.json();
+
+    // Permite qualquer origem acessar (opcional)
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.status(200).json(data);
-  } catch (error) {
-    console.error("Erro ao buscar notícias:", error);
+  } catch (err) {
     res.status(500).json({ error: "Erro ao buscar notícias" });
   }
 }

@@ -16,39 +16,51 @@ const Home = () => {
   return (
     <div className="min-h-screen flex justify-center bg-gray-100 text-black">
       <main className="w-full max-w-[420px] min-h-[100vh] md:h-auto flex flex-col bg-white rounded-lg shadow-md">
-        <div className="p-10">
+        <div className="p-6 md:p-10">
           {/* Header */}
-          <div className="flex flex-row justify-between mb-8">
+          <div className="flex flex-row justify-between items-center mb-6">
             <h1 className="font-semibold text-2xl">Home</h1>
-            <img src={notif} alt="Notificações" />
+            <img src={notif} alt="Notificações" className="w-6 h-6" />
           </div>
 
           {/* Perfil do Usuário */}
           <h2 className="font-semibold text-lg mb-2">Olá Luciane:</h2>
           <div className="mb-4 flex flex-row p-4 gap-4 bg-gray-200 rounded-lg border border-transparent">
-            <img src={jogadora} alt="Luciane Barbosa" />
-            <div className="flex flex-col">
-              <h3 className="font-semibold">Luciane Barbosa</h3>
-              <p className="font-light mb-1">07/05/2007</p>
-              <p className="text-[15px]">Perfil Incompleto</p>
-              <img src={barra} alt="barra de progresso" />
-              <a className="italic underline text-[13px] text-gray-600" href="">
-                Completar Perfil
-              </a>
+            <img
+              src={jogadora}
+              alt="Luciane Barbosa"
+              className="w-20 h-20 object-cover rounded-full"
+            />
+            <div className="flex flex-col justify-between">
+              <div>
+                <h3 className="font-semibold">Luciane Barbosa</h3>
+                <p className="font-light mb-1">07/05/2007</p>
+                <p className="text-[15px]">Perfil Incompleto</p>
+              </div>
+              <div className="flex flex-col gap-1">
+                <img src={barra} alt="barra de progresso" className="w-full" />
+                <a
+                  className="italic underline text-[13px] text-gray-600"
+                  href="#"
+                >
+                  Completar Perfil
+                </a>
+              </div>
             </div>
           </div>
 
           {/* Dica do dia */}
-          <h1 className="font-semibold text-lg">Dica do dia</h1>
+          <h1 className="font-semibold text-lg mb-1">Dica do dia</h1>
           <p className="font-light mb-4">
             Recrutadores têm pouco tempo. Coloque suas{" "}
             <strong>
-              3 melhores jogadas nos primeiros 30 segundos do seu vídeo de highlights.
+              3 melhores jogadas nos primeiros 30 segundos do seu vídeo de
+              highlights.
             </strong>
           </p>
 
           {/* Peneiras próximas */}
-          <h1 className="font-semibold text-lg">Peneiras perto de você</h1>
+          <h1 className="font-semibold text-lg mb-2">Peneiras perto de você</h1>
           <Card
             icon={palm}
             title="Palmeiras Futebol Feminino"
@@ -63,6 +75,8 @@ const Home = () => {
           {/* Notícias Passa Bola */}
           <div className="pb-20 pt-6">
             <h1 className="font-semibold text-lg mb-2">Notícias Passa Bola</h1>
+
+            {/* Carrega apenas 2 notícias */}
             <Noticias limit={2} />
 
             {/* Botão Ver Mais */}
