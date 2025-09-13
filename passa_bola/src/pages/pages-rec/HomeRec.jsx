@@ -4,7 +4,7 @@ import jogadora from "../../assets/images/jogadora.png";
 import jogadora2 from "../../assets/images/jogadora2.png";
 
 import Footer from "../../compenentes/Footer/Footer";
-import Noticia from "../../compenentes/noticias_Api/Noticias";
+import Noticia from "../../compenentes/api/Noticias";
 import React from "react";
 
 const HomeRec = () => {

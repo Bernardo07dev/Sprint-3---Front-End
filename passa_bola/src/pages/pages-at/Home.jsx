@@ -8,7 +8,7 @@ import corin from "../../assets/icons/Corin.svg";
 
 import Footer from "../../compenentes/Footer/Footer";
 import Card from "../../compenentes/Card.jsx/Card";
-import Noticias from "../../compenentes/noticias_Api/Noticias";
+import Noticias from "../../compenentes/api/Noticias";
 
 const Home = () => {
   const navigate = useNavigate();

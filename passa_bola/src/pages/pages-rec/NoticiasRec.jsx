@@ -1,6 +1,6 @@
 import Footer from '../../compenentes/Footer/Footer';
 import notif from '../../assets/icons/notif.svg';
-import NewsList from '../../compenentes/noticias_Api/Noticias'; // ajuste o caminho correto
+import NewsList from '../../compenentes/api/Noticias'; // ajuste o caminho correto
 
 const NoticiasRec = () =>  {
   return (

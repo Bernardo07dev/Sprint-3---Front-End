@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CardNoticia from "../Card.jsx/Card_Noticia";
-
-// **Chave exposta diretamente no frontend**
+ 
 const API_KEY = "5112f9d2c6d5408590bc522c8da0ea3f"
 
 const Noticias = ({ limit }) => {

@@ -1,6 +1,6 @@
 import Footer from '../../compenentes/Footer/Footer';
 import notif from '../../assets/icons/notif.svg';
-import Noticia from '../../compenentes/noticias_Api/Noticias'
+import Noticia from '../../compenentes/api/Noticias'
 
 const Noticias = () =>  {
   return (

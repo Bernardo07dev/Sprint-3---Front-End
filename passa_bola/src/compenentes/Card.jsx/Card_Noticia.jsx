@@ -1,3 +1,4 @@
+// /compenentes/Card.jsx/Card_Noticia.jsx
 import React from "react";
 
 const CardNoticia = ({ titulo, desc, img, data, url }) => {
@@ -15,6 +16,7 @@ const CardNoticia = ({ titulo, desc, img, data, url }) => {
           className="w-full h-44 sm:h-48 object-cover"
         />
       )}
+
       <div className="p-4 flex flex-col gap-2">
         <h2 className="font-semibold text-md sm:text-lg text-gray-900 leading-snug">
           {titulo}
