@@ -8,7 +8,6 @@ const CardNoticia = ({ titulo, desc, img, data, url }) => {
       rel="noopener noreferrer"
       className="block border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 bg-white"
     >
-      {/* Imagem da notícia */}
       {img && (
         <img
           src={img}
@@ -17,14 +16,10 @@ const CardNoticia = ({ titulo, desc, img, data, url }) => {
         />
       )}
 
-      {/* Conteúdo */}
       <div className="p-4 flex flex-col gap-2">
-        {/* Título */}
         <h2 className="font-semibold text-md sm:text-lg text-gray-900 leading-snug">
           {titulo}
         </h2>
-
-        {/* Data */}
         <p className="text-xs text-gray-500">
           {new Date(data).toLocaleDateString("pt-BR", {
             day: "2-digit",
@@ -32,13 +27,7 @@ const CardNoticia = ({ titulo, desc, img, data, url }) => {
             year: "numeric",
           })}
         </p>
-
-        {/* Descrição */}
-        <p className="text-sm text-gray-700 line-clamp-3">
-          {desc}
-        </p>
-
-        {/* Link */}
+        <p className="text-sm text-gray-700 line-clamp-3">{desc}</p>
         <span className="mt-2 text-sm text-blue-600 font-medium hover:underline">
           Ver Detalhes
         </span>
