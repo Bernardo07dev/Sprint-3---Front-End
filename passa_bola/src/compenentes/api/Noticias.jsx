@@ -6,24 +6,26 @@ export default function Noticias() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("/api/noticias")
-      .then((res) => {
+    const fetchNews = async () => {
+      try {
+        const res = await fetch("/api/noticias");
         if (!res.ok) throw new Error("Erro na requisição");
-        return res.json();
-      })
-      .then((data) => {
+        const data = await res.json();
         setNews(data.articles || []);
-        setLoading(false);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error("Erro ao buscar notícias:", err);
         setError("Não foi possível carregar as notícias.");
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchNews();
   }, []);
 
   if (loading) return <p>Carregando notícias...</p>;
   if (error) return <p>{error}</p>;
+  if (news.length === 0) return <p>Nenhuma notícia encontrada.</p>;
 
   return (
     <div>
