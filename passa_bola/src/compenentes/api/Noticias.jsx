@@ -1,43 +1,51 @@
-import React, { useEffect, useState } from "react";
-import CardNoticia from "../Card.jsx/Card_Noticia";
+import { useEffect, useState } from "react";
 
-const Noticias = ({ limit }) => {
+export default function Noticias() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("/api/noticias") // chama o endpoint do seu projeto
-      .then(res => res.json())
-      .then(data => {
+    fetch("/api/noticias")
+      .then((res) => {
+        if (!res.ok) throw new Error("Erro na requisição");
+        return res.json();
+      })
+      .then((data) => {
         setNews(data.articles || []);
         setLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error("Erro ao buscar notícias:", err);
+        setError("Não foi possível carregar as notícias.");
         setLoading(false);
       });
   }, []);
 
-  const displayedNews = limit ? news.slice(0, limit) : news;
+  if (loading) return <p>Carregando notícias...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
-    <div className="grid grid-cols-1 gap-4">
-      {loading && <p>Carregando notícias...</p>}
-
-      {!loading && displayedNews.length === 0 && <p>Nenhuma notícia encontrada.</p>}
-
-      {displayedNews.map((item, i) => (
-        <CardNoticia
-          key={i}
-          titulo={item.title}
-          desc={item.description}
-          img={item.urlToImage}
-          data={item.publishedAt}
-          url={item.url}
-        />
+    <div>
+      {news.map((item, index) => (
+        <div
+          key={index}
+          style={{
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            padding: "12px",
+            marginBottom: "12px",
+          }}
+        >
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+          {item.url && (
+            <a href={item.url} target="_blank" rel="noopener noreferrer">
+              Ler mais
+            </a>
+          )}
+        </div>
       ))}
     </div>
   );
-};
-
-export default Noticias;
+}
