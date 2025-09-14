@@ -116,7 +116,8 @@ const HomeRec = () => {
           {/* Notícias Passa Bola */}
           <div className="pb-20 pt-6">
             <h1 className="font-semibold text-lg">Notícias Passa Bola</h1>
-            <Noticia limit={2} apiKey="5112f9d2c6d5408590bc522c8da0ea3f" />
+           <Noticia limit={2} />
+
             <button
               onClick={() => navigate("/noticiasrec")}
               className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"

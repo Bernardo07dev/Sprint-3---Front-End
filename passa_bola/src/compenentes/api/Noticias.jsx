@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from "react";
 import CardNoticia from "../Card.jsx/Card_Noticia";
- 
-const API_KEY = "5112f9d2c6d5408590bc522c8da0ea3f"
 
 const Noticias = ({ limit }) => {
   const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(
-      `https://newsapi.org/v2/everything?q=futebol+feminino&language=pt&sortBy=publishedAt&apiKey=${API_KEY}`
-    )
-      .then((res) => res.json())
-      .then((data) => setNews(data.articles || []))
-      .catch((err) => console.error("Erro ao buscar notícias:", err));
+    fetch("/api/noticias") // chama o endpoint do seu projeto
+      .then(res => res.json())
+      .then(data => {
+        setNews(data.articles || []);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Erro ao buscar notícias:", err);
+        setLoading(false);
+      });
   }, []);
 
   const displayedNews = limit ? news.slice(0, limit) : news;
 
   return (
     <div className="grid grid-cols-1 gap-4">
-      {displayedNews.length === 0 && <p>Carregando notícias...</p>}
+      {loading && <p>Carregando notícias...</p>}
+
+      {!loading && displayedNews.length === 0 && <p>Nenhuma notícia encontrada.</p>}
 
       {displayedNews.map((item, i) => (
         <CardNoticia
