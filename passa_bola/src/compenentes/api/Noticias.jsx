@@ -1,53 +1,38 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import CardNoticia from "../Card.jsx/Card_Noticia";
+ 
+const API_KEY = "5112f9d2c6d5408590bc522c8da0ea3f"
 
-export default function Noticias() {
+const Noticias = ({ limit }) => {
   const [news, setNews] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const res = await fetch("/api/noticias");
-        if (!res.ok) throw new Error("Erro na requisição");
-        const data = await res.json();
-        setNews(data.articles || []);
-      } catch (err) {
-        console.error("Erro ao buscar notícias:", err);
-        setError("Não foi possível carregar as notícias.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchNews();
+    fetch(
+      `https://newsapi.org/v2/everything?q=futebol+feminino&language=pt&sortBy=publishedAt&apiKey=${API_KEY}`
+    )
+      .then((res) => res.json())
+      .then((data) => setNews(data.articles || []))
+      .catch((err) => console.error("Erro ao buscar notícias:", err));
   }, []);
 
-  if (loading) return <p>Carregando notícias...</p>;
-  if (error) return <p>{error}</p>;
-  if (news.length === 0) return <p>Nenhuma notícia encontrada.</p>;
+  const displayedNews = limit ? news.slice(0, limit) : news;
 
   return (
-    <div>
-      {news.map((item, index) => (
-        <div
-          key={index}
-          style={{
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            padding: "12px",
-            marginBottom: "12px",
-          }}
-        >
-          <h3>{item.title}</h3>
-          <p>{item.description}</p>
-          {item.url && (
-            <a href={item.url} target="_blank" rel="noopener noreferrer">
-              Ler mais
-            </a>
-          )}
-        </div>
+    <div className="grid grid-cols-1 gap-4">
+      {displayedNews.length === 0 && <p>Carregando notícias...</p>}
+
+      {displayedNews.map((item, i) => (
+        <CardNoticia
+          key={i}
+          titulo={item.title}
+          desc={item.description}
+          img={item.urlToImage}
+          data={item.publishedAt}
+          url={item.url}
+        />
       ))}
     </div>
   );
-}
+};
+
+export default Noticias;
