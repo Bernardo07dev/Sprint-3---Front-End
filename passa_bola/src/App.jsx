@@ -1,11 +1,9 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './compenentes/Autenticacao/Autenticacao.jsx';
 
-// Páginas principais
+// Páginas
 import EscolhaConta from './pages/EscolhaConta';
 import Login from './pages/Login';
-
-// Páginas Atleta
 import Home from './pages/pages-at/Home';
 import Propostas from './pages/pages-at/Propostas';
 import Noticias from './pages/pages-at/Noticias';
@@ -13,8 +11,6 @@ import Conta from './pages/pages-at/Conta';
 import Fase1 from './pages/at-fase-1';
 import Fase2 from './pages/at-fase-2';
 import Fase3 from './pages/at-fase-3';
-
-// Páginas Recrutador
 import HomeRec from './pages/pages-rec/HomeRec';
 import PropostasRec from './pages/pages-rec/PropostasRec';
 import NoticiasRec from './pages/pages-rec/NoticiasRec';
@@ -34,34 +30,28 @@ function App() {
 
   return (
     <Routes>
-      {/* Páginas públicas */}
       <Route path="/" element={<EscolhaConta />} />
       <Route path="/login" element={<Login />} />
 
-      {/* Cadastro Atleta */}
       <Route path="/at-fase-1" element={<Fase1 />} />
       <Route path="/at-fase-2" element={<Fase2 />} />
       <Route path="/at-fase-3" element={<Fase3 />} />
 
-      {/* Páginas Atleta protegidas */}
       <Route path="/home" element={<RotaProtegida><Home /></RotaProtegida>} />
       <Route path="/propostas" element={<RotaProtegida><Propostas /></RotaProtegida>} />
       <Route path="/noticias" element={<RotaProtegida><Noticias /></RotaProtegida>} />
       <Route path="/conta" element={<RotaProtegida><Conta /></RotaProtegida>} />
 
-      {/* Cadastro Recrutador */}
       <Route path="/re-fase-1" element={<RFase1 />} />
       <Route path="/re-fase-2" element={<RFase2 />} />
       <Route path="/re-fase-3" element={<RFase3 />} />
       <Route path="/re-fase-4" element={<RFase4 />} />
 
-      {/* Páginas Recrutador protegidas */}
       <Route path="/homerec" element={<RotaProtegida><HomeRec /></RotaProtegida>} />
       <Route path="/propostasrec" element={<RotaProtegida><PropostasRec /></RotaProtegida>} />
       <Route path="/noticiasrec" element={<RotaProtegida><NoticiasRec /></RotaProtegida>} />
       <Route path="/contarec" element={<RotaProtegida><ContaRec /></RotaProtegida>} />
 
-      {/* Rota padrão */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
