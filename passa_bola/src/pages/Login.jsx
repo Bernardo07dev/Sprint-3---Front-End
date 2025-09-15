@@ -16,8 +16,15 @@ const Login = () => {
     e.preventDefault();
 
     const sucesso = entrar(email, senha);
+
     if (sucesso) {
-      navegar("/HomeRec"); 
+      // Verifica se é recrutor ou atleta
+      const emailRecrutador = "recrutador@exemplo.com";
+      if (email.trim() === emailRecrutador) {
+        navegar("/homerec"); // Tela do recrutador
+      } else {
+        navegar("/home"); // Tela do atleta
+      }
     } else {
       setErro("Email ou senha incorretos!");
     }
@@ -56,6 +63,7 @@ const Login = () => {
             />
 
             {erro && <p className="text-red-500 text-sm mt-1">{erro}</p>}
+
             <button
               type="submit"
               className="w-full py-3 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded mt-2"

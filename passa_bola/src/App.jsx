@@ -1,7 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./compenentes/Autenticacao/Autenticacao.jsx";
 import './index.css';
-// Páginas principais
+
+// Páginas públicas
 import EscolhaConta from "./pages/EscolhaConta";
 import Login from "./pages/Login";
 
@@ -27,6 +28,7 @@ import RFase4 from "./pages/re-fase-4";
 function App() {
   const { usuario } = useAuth();
 
+  // Componente para proteger rotas
   const RotaProtegida = ({ children }) => {
     if (!usuario) return <Navigate to="/login" replace />;
     return children;
@@ -44,10 +46,38 @@ function App() {
       <Route path="/at-fase-3" element={<Fase3 />} />
 
       {/* Páginas Atleta protegidas */}
-      <Route path="/home" element={<RotaProtegida><Home /></RotaProtegida>} />
-      <Route path="/propostas" element={<RotaProtegida><Propostas /></RotaProtegida>} />
-      <Route path="/noticias" element={<RotaProtegida><Noticias /></RotaProtegida>} />
-      <Route path="/conta" element={<RotaProtegida><Conta /></RotaProtegida>} />
+      <Route
+        path="/home"
+        element={
+          <RotaProtegida>
+            {usuario?.tipo === "atleta" ? <Home /> : <Navigate to="/homerec" replace />}
+          </RotaProtegida>
+        }
+      />
+      <Route
+        path="/propostas"
+        element={
+          <RotaProtegida>
+            {usuario?.tipo === "atleta" ? <Propostas /> : <Navigate to="/homerec" replace />}
+          </RotaProtegida>
+        }
+      />
+      <Route
+        path="/noticias"
+        element={
+          <RotaProtegida>
+            {usuario?.tipo === "atleta" ? <Noticias /> : <Navigate to="/homerec" replace />}
+          </RotaProtegida>
+        }
+      />
+      <Route
+        path="/conta"
+        element={
+          <RotaProtegida>
+            {usuario?.tipo === "atleta" ? <Conta /> : <Navigate to="/homerec" replace />}
+          </RotaProtegida>
+        }
+      />
 
       {/* Cadastro Recrutador */}
       <Route path="/re-fase-1" element={<RFase1 />} />
@@ -56,10 +86,38 @@ function App() {
       <Route path="/re-fase-4" element={<RFase4 />} />
 
       {/* Páginas Recrutador protegidas */}
-      <Route path="/homerec" element={<RotaProtegida><HomeRec /></RotaProtegida>} />
-      <Route path="/propostasrec" element={<RotaProtegida><PropostasRec /></RotaProtegida>} />
-      <Route path="/noticiasrec" element={<RotaProtegida><NoticiasRec /></RotaProtegida>} />
-      <Route path="/contarec" element={<RotaProtegida><ContaRec /></RotaProtegida>} />
+      <Route
+        path="/homerec"
+        element={
+          <RotaProtegida>
+            {usuario?.tipo === "recrutador" ? <HomeRec /> : <Navigate to="/home" replace />}
+          </RotaProtegida>
+        }
+      />
+      <Route
+        path="/propostasrec"
+        element={
+          <RotaProtegida>
+            {usuario?.tipo === "recrutador" ? <PropostasRec /> : <Navigate to="/home" replace />}
+          </RotaProtegida>
+        }
+      />
+      <Route
+        path="/noticiasrec"
+        element={
+          <RotaProtegida>
+            {usuario?.tipo === "recrutador" ? <NoticiasRec /> : <Navigate to="/home" replace />}
+          </RotaProtegida>
+        }
+      />
+      <Route
+        path="/contarec"
+        element={
+          <RotaProtegida>
+            {usuario?.tipo === "recrutador" ? <ContaRec /> : <Navigate to="/home" replace />}
+          </RotaProtegida>
+        }
+      />
 
       {/* Rota padrão */}
       <Route path="*" element={<Navigate to="/" replace />} />

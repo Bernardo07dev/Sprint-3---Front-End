@@ -2,8 +2,8 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 // Usuários pré-definidos
 const usuarios = [
-  { email: "teste@gmail.com", senha: "123456" },
-  { email: "usuario@exemplo.com", senha: "senha123" },
+  { email: "atleta@exemplo.com", senha: "123456", tipo: "atleta" },
+  { email: "recrutador@exemplo.com", senha: "123456", tipo: "recrutador" },
 ];
 
 const AuthContext = createContext();
@@ -23,7 +23,6 @@ export const AuthProvider = ({ children }) => {
   }, [usuario]);
 
   const entrar = (email, senha) => {
-    // remove espaços extras
     const usuarioValido = usuarios.find(
       (u) => u.email === email.trim() && u.senha === senha.trim()
     );
