@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import CardNoticia from "../Card.jsx/Card_Noticia";
- 
-const API_KEY = "5112f9d2c6d5408590bc522c8da0ea3f"
 
 const Noticias = ({ limit }) => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `https://newsapi.org/v2/everything?q=futebol+feminino&language=pt&sortBy=publishedAt&apiKey=${API_KEY}`
-    )
+    fetch("/api/news") // ✅ Chama sua API do Vercel
       .then((res) => res.json())
       .then((data) => setNews(data.articles || []))
       .catch((err) => console.error("Erro ao buscar notícias:", err));
