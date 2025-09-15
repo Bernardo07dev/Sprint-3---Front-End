@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import CardNoticia from "../Card.jsx/Card_Noticia";
+import CardNoticia from "../../compenentes/Card.jsx/Card_Noticia";
 
 const Noticias = ({ limit }) => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    fetch("/api/noticias") // ✅ Chama sua API do Vercel
+    fetch("/api/news") // ✅ Chama sua API do Vercel
       .then((res) => res.json())
       .then((data) => setNews(data.articles || []))
       .catch((err) => console.error("Erro ao buscar notícias:", err));

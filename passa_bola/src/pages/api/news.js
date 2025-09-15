@@ -1,12 +1,12 @@
 export default async function handler(req, res) {
-  const API_KEY = process.env.API_KEY; // ✅ Correto: usar variável de ambiente
+  const API_KEY = process.env.API_KEY; 
 
   if (!API_KEY) {
     console.error("Erro: A chave da API não está definida nas variáveis de ambiente do Vercel.");
     return res.status(500).json({ error: "Chave da API não configurada." });
   }
 
-  const url = `https://newsapi.org/v2/everything?q=futebol+feminino&language=pt&sortBy=publishedAt&apiKey=${API_KEY}`; // ✅ Corrigido: faltava "apiKey="
+  const url = `https://newsapi.org/v2/everything?q=futebol+feminino&language=pt&sortBy=publishedAt&apiKey=${API_KEY}`;
 
   try {
     const response = await fetch(url);
