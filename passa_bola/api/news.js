@@ -1,3 +1,6 @@
+// /api/news.js
+import fetch from "node-fetch";
+
 export default async function handler(req, res) {
   const API_KEY = process.env.API_KEY;
 
@@ -10,13 +13,8 @@ export default async function handler(req, res) {
   try {
     const response = await fetch(url);
     const data = await response.json();
-
-    if (response.ok) {
-      res.status(200).json(data);
-    } else {
-      res.status(response.status).json({ error: data.message || "Erro ao buscar notícias." });
-    }
+    return res.status(200).json(data);
   } catch (err) {
-    res.status(500).json({ error: "Erro interno do servidor." });
+    return res.status(500).json({ error: "Erro interno do servidor." });
   }
 }
