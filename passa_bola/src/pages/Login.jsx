@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../compenentes/Autenticacao/Autenticacao.jsx";
 import { CampoTexto } from "../compenentes/CampoTexto/CampoTexto.jsx";
 import logo from "../assets/icons/Logo.svg";
- 
+
 const Login = () => {
   const navegar = useNavigate();
   const { entrar } = useAuth();
@@ -14,9 +14,10 @@ const Login = () => {
 
   const enviarFormulario = (e) => {
     e.preventDefault();
+
     const sucesso = entrar(email, senha);
     if (sucesso) {
-      navegar("/home");
+      navegar("/HomeRec"); 
     } else {
       setErro("Email ou senha incorretos!");
     }
@@ -32,24 +33,28 @@ const Login = () => {
         <div className="w-full flex flex-col items-center">
           <h1 className="text-xl font-semibold mb-4">Faça seu Login</h1>
 
-          <form
-            onSubmit={enviarFormulario}
-            className="flex flex-col w-full gap-4"
-          >
+          <form onSubmit={enviarFormulario} className="flex flex-col w-full gap-4">
             <CampoTexto
               label="Email"
               type="email"
               placeholder="teste@gmail.com"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (erro) setErro("");
+              }}
             />
             <CampoTexto
               label="Senha"
               type="password"
               placeholder="senha"
               value={senha}
-              onChange={(e) => setSenha(e.target.value)}
+              onChange={(e) => {
+                setSenha(e.target.value);
+                if (erro) setErro("");
+              }}
             />
+
             {erro && <p className="text-red-500 text-sm mt-1">{erro}</p>}
             <button
               type="submit"
@@ -61,9 +66,12 @@ const Login = () => {
 
           <p className="text-center text-sm text-gray-600 mt-5">
             Não tem conta?{" "}
-            <a href="/" className="font-semibold text-blue-700 hover:underline">
+            <Link
+              to="/cadastro"
+              className="font-semibold text-blue-700 hover:underline"
+            >
               Clique aqui e crie sua conta
-            </a>
+            </Link>
           </p>
         </div>
       </div>

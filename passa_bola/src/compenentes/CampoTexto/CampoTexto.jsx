@@ -1,7 +1,4 @@
-// import './CampoTexto.css';
-
-export function CampoTexto({ label, type, placeholder }) {
-  
+export function CampoTexto({ label, type, placeholder, value, onChange }) {
   const inputId = `input-${label.replace(/\s+/g, '-').toLowerCase()}`;
 
   return (
@@ -14,6 +11,8 @@ export function CampoTexto({ label, type, placeholder }) {
         id={inputId}
         type={type}
         placeholder={placeholder}
+        value={value}           // necessário para controlar o input
+        onChange={onChange}     // necessário para atualizar estado no Login
         className="border border-[#00000022] rounded-sm w-full py-3 px-4 text-gray-700 text-[15px] focus:outline-none focus:shadow-outline"
       />
     </div>

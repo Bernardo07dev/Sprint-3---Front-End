@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 // Usuários pré-definidos
 const usuarios = [
@@ -9,11 +9,23 @@ const usuarios = [
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [usuario, setUsuario] = useState(null);
+  const [usuario, setUsuario] = useState(() => {
+    const usuarioSalvo = localStorage.getItem("usuario");
+    return usuarioSalvo ? JSON.parse(usuarioSalvo) : null;
+  });
+
+  useEffect(() => {
+    if (usuario) {
+      localStorage.setItem("usuario", JSON.stringify(usuario));
+    } else {
+      localStorage.removeItem("usuario");
+    }
+  }, [usuario]);
 
   const entrar = (email, senha) => {
+    // remove espaços extras
     const usuarioValido = usuarios.find(
-      (u) => u.email === email && u.senha === senha
+      (u) => u.email === email.trim() && u.senha === senha.trim()
     );
 
     if (usuarioValido) {
