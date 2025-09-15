@@ -5,7 +5,7 @@ const Noticias = ({ limit }) => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    fetch("/api/news") // ✅ Chama sua API do Vercel
+    fetch("/api/noticias") // ✅ Chama sua API do Vercel
       .then((res) => res.json())
       .then((data) => setNews(data.articles || []))
       .catch((err) => console.error("Erro ao buscar notícias:", err));
