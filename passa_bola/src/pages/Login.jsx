@@ -33,8 +33,8 @@ const Login = () => {
           <h1 className="text-xl font-semibold mb-4">Faça seu Login</h1>
           
           <form onSubmit={enviarFormulario} className="flex flex-col w-full gap-4">
-            <CampoTexto label="Email" type="email" placeholder="bru@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <CampoTexto label="Senha" type="password" placeholder="bruna123" value={senha} onChange={(e) => setSenha(e.target.value)} />
+            <CampoTexto label="Email" type="email" placeholder="teste@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <CampoTexto label="Senha" type="password" placeholder="senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
             {erro && <p className="text-red-500 text-sm mt-1">{erro}</p>}
             <button type="submit" className="w-full py-3 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded mt-2">
               Entrar
