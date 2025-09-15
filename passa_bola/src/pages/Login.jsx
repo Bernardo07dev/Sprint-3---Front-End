@@ -13,22 +13,24 @@ const Login = () => {
   const [erro, setErro] = useState("");
 
   const enviarFormulario = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const sucesso = entrar(email, senha);
+  const sucesso = entrar(email, senha);
 
-    if (sucesso) {
-      // Verifica se é recrutor ou atleta
-      const emailRecrutador = "recrutador@exemplo.com";
-      if (email.trim() === emailRecrutador) {
-        navegar("/homerec"); // Tela do recrutador
-      } else {
-        navegar("/home"); // Tela do atleta
-      }
+  if (sucesso) {
+    // Verifica se é recrutor ou atleta
+    const emailRecrutador = "recrutador@exemplo.com";
+    if (email.trim() === emailRecrutador) {
+      navegar("/homerec"); 
     } else {
-      setErro("Email ou senha incorretos!");
+      navegar("/home"); 
     }
-  };
+  } else {
+    const mensagemErro = "Email ou senha incorretos! O login está no readme ou no teams";
+    setErro(mensagemErro);
+    alert(mensagemErro); 
+  }
+};
 
   return (
     <div className="h-screen flex justify-center items-center bg-gray-100 text-black">
