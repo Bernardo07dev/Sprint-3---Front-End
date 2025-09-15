@@ -1,24 +1,23 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
+
+// Emails e senhas pré-definidos
+const usuarios = [
+  { email: "teste@gmail.com", senha: "123456" },
+  { email: "usuario@exemplo.com", senha: "senha123" },
+];
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [usuario, setUsuario] = useState(null);
-
   const entrar = (email, senha) => {
-    const usuarioExemplo = { email: "bru@gmail.com", senha: "bruna123" };
-    if (email.trim().toLowerCase() === usuarioExemplo.email && senha.trim() === usuarioExemplo.senha) {
-      setUsuario({ email: email.trim().toLowerCase() });
-      return true;
-    } else {
-      return false;
-    }
+    const usuarioValido = usuarios.find(
+      (u) => u.email === email && u.senha === senha
+    );
+    return !!usuarioValido; // true se encontrado, false caso contrário
   };
 
-  const sair = () => setUsuario(null);
-
   return (
-    <AuthContext.Provider value={{ usuario, entrar, sair }}>
+    <AuthContext.Provider value={{ entrar }}>
       {children}
     </AuthContext.Provider>
   );
