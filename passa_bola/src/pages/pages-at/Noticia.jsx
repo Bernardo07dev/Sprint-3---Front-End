@@ -1,8 +1,8 @@
 import Footer from '../../compenentes/Footer/Footer';
 import notif from '../../assets/icons/notif.svg';
-import Noticia from '../../compenentes/api/Noticias'
+import Noticias from '../api/Noticias';
 
-const Noticias = () =>  {
+const Noticia = () =>  {
   return (
     <div className="min-h-screen flex justify-center bg-gray-100 text-black">
       <main className="w-full max-w-[420px] min-h-[100vh] md:h-auto flex flex-col bg-white rounded-lg shadow-md ">
@@ -12,7 +12,7 @@ const Noticias = () =>  {
             <img src={notif} alt="" />
           </div>
 
-          <Noticia />
+          <Noticias />
 
         </div>
         <Footer pg1='/home' pg2='/propostas' pg3='/noticias' pg4='/conta'></Footer>
@@ -21,4 +21,4 @@ const Noticias = () =>  {
   )
 }
 
-export default Noticias;
+export default Noticia;

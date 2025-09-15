@@ -9,7 +9,7 @@ import Login from "./pages/Login";
 // Páginas Atleta
 import Home from "./pages/pages-at/Home";
 import Propostas from "./pages/pages-at/Propostas";
-import Noticias from "./pages/pages-at/Noticias";
+import Noticias from "./pages/pages-at/Noticia";
 import Conta from "./pages/pages-at/Conta";
 import Fase1 from "./pages/at-fase-1";
 import Fase2 from "./pages/at-fase-2";

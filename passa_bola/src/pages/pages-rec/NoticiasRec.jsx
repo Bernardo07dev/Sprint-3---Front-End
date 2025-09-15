@@ -1,7 +1,6 @@
 import Footer from '../../compenentes/Footer/Footer';
 import notif from '../../assets/icons/notif.svg';
-import NewsList from '../../compenentes/api/Noticias'; // ajuste o caminho correto
-
+import Noticias from '../api/Noticias';
 const NoticiasRec = () =>  {
   return (
     <div className="min-h-screen flex justify-center bg-gray-100 text-black">
@@ -12,7 +11,7 @@ const NoticiasRec = () =>  {
             <img src={notif} alt="" />
           </div>
 
-          <NewsList />
+          <Noticias />
 
         </div>
         <Footer pg1='/HomeRec' pg2='/propostasrec' pg3='/noticiasrec' pg4='/contarec'></Footer>

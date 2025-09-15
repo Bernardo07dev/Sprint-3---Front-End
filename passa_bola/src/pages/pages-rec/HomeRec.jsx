@@ -4,7 +4,7 @@ import jogadora from "../../assets/images/jogadora.png";
 import jogadora2 from "../../assets/images/jogadora2.png";
 
 import Footer from "../../compenentes/Footer/Footer";
-import Noticia from "../../compenentes/api/Noticias";
+import Noticias from '../api/Noticias';
 import React from "react";
 
 const HomeRec = () => {
@@ -116,7 +116,7 @@ const HomeRec = () => {
           {/* Notícias Passa Bola */}
           <div className="pb-20 pt-6">
             <h1 className="font-semibold text-lg">Notícias Passa Bola</h1>
-           <Noticia limit={2} />
+           <Noticias limit={2} />
 
             <button
               onClick={() => navigate("/noticiasrec")}
