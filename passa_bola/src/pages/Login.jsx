@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../compenentes/Autenticacao/Autenticacao.jsx";
 import { CampoTexto } from "../compenentes/CampoTexto/CampoTexto.jsx";
 import logo from "../assets/icons/Logo.svg";
-
+ 
 const Login = () => {
   const navegar = useNavigate();
   const { entrar } = useAuth();

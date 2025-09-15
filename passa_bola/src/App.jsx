@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./compenentes/Autenticacao/Autenticacao.jsx";
-
+import './index.css';
 // Páginas principais
 import EscolhaConta from "./pages/EscolhaConta";
 import Login from "./pages/Login";

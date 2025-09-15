@@ -1,5 +1,6 @@
 import { useAuth } from "../../compenentes/Autenticacao/Autenticacao.jsx";
 import { useNavigate } from "react-router-dom";
+ 
 
 const Home = () => {
   const { usuario, sair } = useAuth();
