@@ -34,7 +34,7 @@ const Login = () => {
 
   return (
     <div className="h-screen flex justify-center items-center bg-gray-100 text-black">
-      <div className="w-full max-w-[420px]  h-screen  vh-100 flex flex-col justify-between bg-white p-10 rounded-lg shadow-md">
+      <div className="w-full max-w-[420px]  h-screen justify-center  vh-100 flex flex-col justify-between bg-white p-10 rounded-lg shadow-md">
         <div className="flex justify-center mb-6">
           <img src={logo} alt="Logo Passa a Bola" className="w-16" />
         </div>
