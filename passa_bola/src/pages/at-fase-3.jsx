@@ -47,7 +47,7 @@ const Fase3 = () => {
                             />
 
 
-                            <button onClick={() => (navigate('/Login'))} type="button" className="w-full p-3 my-2 cursor-pointer justify-center items-center rounded-sm border-2 border-[#0000001d] font-semibold duration-1000 hover:scale-[1.05]"> 
+                            <button onClick={() => (navigate('/login'))} type="button" className="w-full p-3 my-2 cursor-pointer justify-center items-center rounded-sm border-2 border-[#0000001d] font-semibold duration-1000 hover:scale-[1.05]"> 
                                 Próximo
                             </button>
                         </form>
