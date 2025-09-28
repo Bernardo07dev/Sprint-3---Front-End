@@ -1,5 +1,13 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
+// Link da Vercel com o JSON de jogadoras
+const JOGADORAS_URL = "https://sprint-3-front-end-copia-git-main-brunas-projects-c2151b40.vercel.app/jogadoras";
+
+// Usuário pré-definido recrutor
+const usuarios = [
+  { email: "recrutador@exemplo.com", senha: "123456", tipo: "recrutador" },
+];
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -9,38 +17,38 @@ export const AuthProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    if (usuario) {
-      localStorage.setItem("usuario", JSON.stringify(usuario));
-    } else {
-      localStorage.removeItem("usuario");
-    }
+    if (usuario) localStorage.setItem("usuario", JSON.stringify(usuario));
+    else localStorage.removeItem("usuario");
   }, [usuario]);
 
   const entrar = async (email, senha) => {
-    // Login do recrutador
-    if (email.trim() === "recrutador@exemplo.com" && senha.trim() === "123456") {
-      const recr = { email, tipo: "recrutador", nome: "Recrutador", foto: null };
-      setUsuario(recr);
-      return recr;
+    // Primeiro verifica se é recrutor
+    const recrutor = usuarios.find(
+      (u) => u.email === email.trim() && u.senha === senha.trim()
+    );
+    if (recrutor) {
+      setUsuario(recrutor);
+      return true;
     }
 
-    // Login das jogadoras - busca no backend
+    // Se não for recrutor, verifica jogadoras
     try {
-      const res = await fetch("https://sprint-3-front-end-copia-git-main-brunas-projects-c2151b40.vercel.app/jogadoras");
+      const res = await fetch(JOGADORAS_URL);
       const jogadoras = await res.json();
-      const jogadoraLogada = jogadoras.find(
+
+      const atleta = jogadoras.find(
         (j) => j.email === email.trim() && j.senha === senha.trim()
       );
-      if (jogadoraLogada) {
-        const jogadora = { ...jogadoraLogada, tipo: "atleta" };
-        setUsuario(jogadora);
-        return jogadora;
+
+      if (atleta) {
+        setUsuario({ ...atleta, tipo: "atleta" });
+        return true;
       }
-      return null;
     } catch (err) {
       console.error("Erro ao buscar jogadoras:", err);
-      return null;
     }
+
+    return false;
   };
 
   const sair = () => setUsuario(null);
