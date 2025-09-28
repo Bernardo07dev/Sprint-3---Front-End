@@ -1,57 +1,41 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import notif from "../../assets/icons/notif.svg";
 import Footer from "../../compenentes/Footer/Footer";
+import CardNoticia from "../../compenentes/Card.jsx/Card_Noticia";
 import Noticias from '../api/Noticias';
-
-const JOGADORAS_URL = "https://sprint-3-front-end-copia-git-main-brunas-projects-c2151b40.vercel.app/jogadoras";
+import corin from "../../assets/icons/Corin.svg";
+import palm from "../../assets/icons/Palm.svg";
+import { jogadoras } from "../../models/Jogadoras.js";
 
 const HomeRec = () => {
   const navigate = useNavigate();
-  const [jogadoras, setJogadoras] = useState([]);
-
-  useEffect(() => {
-      fetch("https://backend-jogadoras.vercel.app/jogadoras")
-      .then(res => res.json())
-      .then(data => setJogadoras(data))
-      .catch(err => console.error("Erro ao buscar jogadoras:", err));
-  }, []);
 
   return (
     <div className="min-h-screen flex justify-center bg-gray-100 text-black">
-      <main className="w-full max-w-[420px] min-h-[100vh] md:h-auto flex flex-col bg-white rounded-lg shadow-md ">
+      <main className="w-full max-w-[420px] min-h-[100vh] flex flex-col bg-white rounded-lg shadow-md ">
         <div className="p-10">
-          <div className="flex flex-row justify-between mb-8">
+          <div className="flex justify-between mb-8">
             <h1 className="font-semibold text-2xl">Home</h1>
             <img src={notif} alt="Notificações" />
           </div>
 
           <h2 className="pb-4 text-lg font-medium">Radar de Talentos</h2>
 
-          {jogadoras.length === 0 ? (
-            <p>Carregando jogadoras...</p>
-          ) : (
-            jogadoras.map(j => (
-              <div key={j.id} className="bg-gray-100 p-2 mb-4 rounded-2xl cursor-pointer">
-                <div className="flex flex-row p-4 gap-4 rounded-lg">
-                  <div className="w-[25%]">
-                    <img
-                      className="rounded-full w-20 h-20 object-cover"
-                      src={j.foto}
-                      alt={j.nome}
-                    />
-                  </div>
-                  <div className="flex flex-col w-[75%]">
-                    <h3 className="font-semibold">{j.nome}</h3>
-                    <p className="font-light text-[13px]">Idade: {j.idade}</p>
-                    <p className="text-[12px]"><strong>Email:</strong> {j.email}</p>
-                    <p className="text-[12px]"><strong>Clube:</strong> {j.clube}</p>
-                    <p className="text-[12px]"><strong>Posição:</strong> {j.posicao}</p>
-                  </div>
+          {jogadoras.map(j => (
+            <div key={j.id} className="bg-gray-100 p-2 mb-4 rounded-2xl cursor-pointer">
+              <div className="flex p-4 gap-4 rounded-lg">
+                <img className="rounded-full w-20 h-20 object-cover" src={j.foto} alt={j.nome} />
+                <div className="flex flex-col">
+                  <h3 className="font-semibold">{j.nome}</h3>
+                  <p className="text-[13px]">Idade: {j.idade}</p>
+                  <p className="text-[12px]"><strong>Email:</strong> {j.email}</p>
+                  <p className="text-[12px]"><strong>Clube:</strong> {j.clube}</p>
+                  <p className="text-[12px]"><strong>Posição:</strong> {j.posicao}</p>
                 </div>
               </div>
-            ))
-          )}
+            </div>
+          ))}
 
           <div className="pb-20 pt-6">
             <h1 className="font-semibold text-lg">Notícias Passa Bola</h1>

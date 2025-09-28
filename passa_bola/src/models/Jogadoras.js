@@ -26,7 +26,7 @@ export const jogadoras = [
     clube: "São Paulo",
     email: "carla.mendes@gmail.com",
     senha:"123456",
-    foto:"./j3.png"
+    foto:"/j3.png"
   }
 ];
 

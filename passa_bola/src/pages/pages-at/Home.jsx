@@ -1,41 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../compenentes/Autenticacao/Autenticacao.jsx";
 import notif from "../../assets/icons/notif.svg";
 import barra from "../../assets/icons/barra.svg";
 import Footer from "../../compenentes/Footer/Footer";
 import Card from "../../compenentes/Card.jsx/Card";
-import Noticias from '../api/Noticias';
+import Noticias from "../api/Noticias";
 import corin from "../../assets/icons/Corin.svg";
 import palm from "../../assets/icons/Palm.svg";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { usuario, setUsuario } = useAuth(); // useAuth já deve expor setUsuario
-  const [carregando, setCarregando] = useState(true);
-
-  // Se quisermos garantir que a foto seja carregada do backend
-  useEffect(() => {
-    if (usuario?.email) {
-      fetch("https://backend-jogadoras.vercel.app/api/jogadoras")
-        .then(res => res.json())
-        .then(data => {
-          const jogadoraLogada = data.find(j => j.email === usuario.email);
-          if (jogadoraLogada) {
-            setUsuario(prev => ({ ...prev, ...jogadoraLogada }));
-          }
-          setCarregando(false);
-        })
-        .catch(err => {
-          console.error("Erro ao buscar dados da jogadora:", err);
-          setCarregando(false);
-        });
-    } else {
-      setCarregando(false);
-    }
-  }, [usuario?.email, setUsuario]);
-
-  if (carregando) return <p className="text-center mt-10">Carregando...</p>;
+  const { usuario } = useAuth();
 
   return (
     <div className="min-h-screen flex justify-center bg-gray-100 text-black">
@@ -53,7 +29,7 @@ const Home = () => {
           </h2>
           <div className="mb-4 flex gap-4 p-4 bg-gray-200 rounded-lg border border-transparent">
             <img
-              src={usuario?.foto || "/assets/images/jogadora.png"}
+              src={usuario?.foto || "/jogadora.png"}
               alt={usuario?.nome || "Jogadora"}
               className="w-20 h-20 object-cover rounded-full"
             />
@@ -65,7 +41,10 @@ const Home = () => {
               </div>
               <div className="flex flex-col gap-1">
                 <img src={barra} alt="barra de progresso" className="w-full" />
-                <a className="italic underline text-[13px] text-gray-600" href="#">
+                <a
+                  className="italic underline text-[13px] text-gray-600"
+                  href="#"
+                >
                   Completar Perfil
                 </a>
               </div>
@@ -76,13 +55,24 @@ const Home = () => {
           <h1 className="font-semibold text-lg mb-1">Dica do dia</h1>
           <p className="font-light mb-4">
             Recrutadores têm pouco tempo. Coloque suas{" "}
-            <strong>3 melhores jogadas nos primeiros 30 segundos do seu vídeo de highlights.</strong>
+            <strong>
+              3 melhores jogadas nos primeiros 30 segundos do seu vídeo de
+              highlights.
+            </strong>
           </p>
 
           {/* Peneiras próximas */}
           <h1 className="font-semibold text-lg mb-2">Peneiras perto de você</h1>
-          <Card icon={corin} title="Corinthians Futebol Feminino" desc="Sub-17 e Sub-20 / 25 de Julho 2025" />
-          <Card icon={palm} title="Palmeiras Futebol Feminino" desc="Sub-15 e Sub-17 / 06 de Agosto de 2025" />
+          <Card
+            icon={corin}
+            title="Corinthians Futebol Feminino"
+            desc="Sub-17 e Sub-20 / 25 de Julho 2025"
+          />
+          <Card
+            icon={palm}
+            title="Palmeiras Futebol Feminino"
+            desc="Sub-15 e Sub-17 / 06 de Agosto de 2025"
+          />
 
           {/* Notícias */}
           <div className="pb-20 pt-6">
@@ -98,7 +88,13 @@ const Home = () => {
           </div>
         </div>
 
-        <Footer pg1="/home" pg2="/propostas" pg3="/noticias" pg4="/conta" />
+        {/* Footer */}
+        <Footer
+          pg1="/home"
+          pg2="/propostas"
+          pg3="/noticias"
+          pg4="/conta"
+        />
       </main>
     </div>
   );

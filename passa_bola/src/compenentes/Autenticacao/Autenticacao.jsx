@@ -1,12 +1,5 @@
-import { createContext, useContext, useState, useEffect } from "react";
-
-// Link da Vercel com o JSON de jogadoras
-const JOGADORAS_URL = "https://sprint-3-front-end-copia-git-main-brunas-projects-c2151b40.vercel.app/jogadoras";
-
-// Usuário pré-definido recrutor
-const usuarios = [
-  { email: "recrutador@exemplo.com", senha: "123456", tipo: "recrutador" },
-];
+import { createContext, useContext, useState } from "react";
+import { jogadoras } from "../../models/Jogadoras.js";
 
 const AuthContext = createContext();
 
@@ -16,45 +9,36 @@ export const AuthProvider = ({ children }) => {
     return usuarioSalvo ? JSON.parse(usuarioSalvo) : null;
   });
 
-  useEffect(() => {
-    if (usuario) localStorage.setItem("usuario", JSON.stringify(usuario));
-    else localStorage.removeItem("usuario");
-  }, [usuario]);
-
-  const entrar = async (email, senha) => {
-    // Primeiro verifica se é recrutor
-    const recrutor = usuarios.find(
-      (u) => u.email === email.trim() && u.senha === senha.trim()
+  const entrar = (email, senha) => {
+    // Primeiro procura entre jogadoras
+    const atleta = jogadoras.find(
+      j => j.email === email.trim() && j.senha === senha.trim()
     );
-    if (recrutor) {
-      setUsuario(recrutor);
+
+    if (atleta) {
+      setUsuario({ ...atleta, tipo: "atleta" });
+      localStorage.setItem("usuario", JSON.stringify({ ...atleta, tipo: "atleta" }));
       return true;
     }
 
-    // Se não for recrutor, verifica jogadoras
-    try {
-      const res = await fetch(JOGADORAS_URL);
-      const jogadoras = await res.json();
-
-      const atleta = jogadoras.find(
-        (j) => j.email === email.trim() && j.senha === senha.trim()
-      );
-
-      if (atleta) {
-        setUsuario({ ...atleta, tipo: "atleta" });
-        return true;
-      }
-    } catch (err) {
-      console.error("Erro ao buscar jogadoras:", err);
+    // Se não for jogadora, procura recrutor
+    if (email === "recrutador@exemplo.com" && senha === "123456") {
+      const recrutador = { email, tipo: "recrutador", nome: "Recrutador" };
+      setUsuario(recrutador);
+      localStorage.setItem("usuario", JSON.stringify(recrutador));
+      return true;
     }
 
     return false;
   };
 
-  const sair = () => setUsuario(null);
+  const sair = () => {
+    setUsuario(null);
+    localStorage.removeItem("usuario");
+  };
 
   return (
-    <AuthContext.Provider value={{ entrar, sair, usuario }}>
+    <AuthContext.Provider value={{ usuario, setUsuario, entrar, sair }}>
       {children}
     </AuthContext.Provider>
   );
