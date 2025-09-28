@@ -7,7 +7,10 @@ Rhariel Marcelo de Oliveira Permanhani rm 566310
 
 LOGIN 
 ATLETA 
-atleta@exemplo.com
+email:
+ana.silva@gmail.com
+mariana.souza@gmail.com
+carla.mendes@gmail.com
 senha: 123456
 
 RECRUTADOR
