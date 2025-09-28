@@ -17,7 +17,7 @@ const Home = () => {
   // Se quisermos garantir que a foto seja carregada do backend
   useEffect(() => {
     if (usuario?.email) {
-      fetch("https://backend-jogadoras.vercel.app/jogadoras")
+      fetch("https://backend-jogadoras.vercel.app/api/jogadoras")
         .then(res => res.json())
         .then(data => {
           const jogadoraLogada = data.find(j => j.email === usuario.email);
