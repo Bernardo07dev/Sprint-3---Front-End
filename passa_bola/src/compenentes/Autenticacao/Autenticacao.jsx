@@ -1,10 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
-// Recrutador fixo
-const usuariosFixos = [
-  { email: "recrutador@exemplo.com", senha: "123456", tipo: "recrutador", nome: "Recrutador", foto: null }
-];
-
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -21,34 +16,36 @@ export const AuthProvider = ({ children }) => {
     }
   }, [usuario]);
 
-  // Login
   const entrar = async (email, senha) => {
-    email = email.trim();
-    senha = senha.trim();
-
-    // Primeiro verifica se é recrutador
-    const usuarioRecrutador = usuariosFixos.find(u => u.email === email && u.senha === senha);
-    if (usuarioRecrutador) {
-      setUsuario(usuarioRecrutador);
-      return true;
-    }
-
-    // Se não, busca as jogadoras no backend
     try {
-      const res = await fetch("http://localhost:5000/jogadoras");
+      // Substitua pelo endpoint do seu backend na Vercel
+      const res = await fetch(
+        "https://sprint-3-front-end-copia-git-main-brunas-projects-c2151b40.vercel.app/jogadoras"
+      );
       const jogadoras = await res.json();
 
-      const jogadoraLogada = jogadoras.find(j => j.email === email && j.senha === senha);
+      // Procura usuário válido entre jogadoras
+      const usuarioValido = jogadoras.find(
+        (j) => j.email === email.trim() && j.senha === senha.trim()
+      );
 
-      if (jogadoraLogada) {
-        setUsuario({ ...jogadoraLogada, tipo: "atleta" });
+      if (usuarioValido) {
+        // Adiciona tipo "atleta"
+        setUsuario({ ...usuarioValido, tipo: "atleta" });
         return true;
       }
-    } catch (err) {
-      console.error("Erro ao buscar jogadoras:", err);
-    }
 
-    return false; // login falhou
+      // Usuário recrutor hardcoded
+      if (email.trim() === "recrutador@exemplo.com" && senha.trim() === "123456") {
+        setUsuario({ email, tipo: "recrutador" });
+        return true;
+      }
+
+      return false;
+    } catch (err) {
+      console.error("Erro ao fazer login:", err);
+      return false;
+    }
   };
 
   const sair = () => setUsuario(null);

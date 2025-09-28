@@ -15,7 +15,7 @@ const Login = () => {
   const enviarFormulario = async (e) => {
     e.preventDefault();
 
-    const sucesso = await entrar(email, senha); // faz login async
+    const sucesso = await entrar(email, senha); // agora async
 
     if (sucesso) {
       if (usuario?.tipo === "recrutador") {
@@ -31,8 +31,8 @@ const Login = () => {
   };
 
   return (
- <div className="h-screen flex justify-center items-center bg-gray-100 text-black">
-      <div className="w-full max-w-[420px]  h-screen justify-center  vh-100 flex flex-col justify-between bg-white p-10 rounded-lg shadow-md">
+    <div className="h-screen flex justify-center items-center bg-gray-100 text-black">
+      <div className="w-full max-w-[420px] h-screen flex flex-col justify-between bg-white p-10 rounded-lg shadow-md">
         <div className="flex justify-center mb-6">
           <img src={logo} alt="Logo Passa a Bola" className="w-16" />
         </div>
@@ -74,10 +74,7 @@ const Login = () => {
 
           <p className="text-center text-sm text-gray-600 mt-5">
             Não tem conta?{" "}
-            <Link
-              to="/cadastro"
-              className="font-semibold text-blue-700 hover:underline"
-            >
+            <Link to="/cadastro" className="font-semibold text-blue-700 hover:underline">
               Clique aqui e crie sua conta
             </Link>
           </p>
