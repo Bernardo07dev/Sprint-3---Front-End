@@ -6,7 +6,7 @@ import logo from "../assets/icons/Logo.svg";
 
 const Login = () => {
   const navegar = useNavigate();
-  const { entrar, usuario } = useAuth();
+  const { entrar } = useAuth();
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -14,11 +14,10 @@ const Login = () => {
 
   const enviarFormulario = async (e) => {
     e.preventDefault();
+    const usuarioLogado = await entrar(email, senha);
 
-    const sucesso = await entrar(email, senha); // agora async
-
-    if (sucesso) {
-      if (usuario?.tipo === "recrutador") {
+    if (usuarioLogado) {
+      if (usuarioLogado.tipo === "recrutador") {
         navegar("/homerec");
       } else {
         navegar("/home");
@@ -32,7 +31,7 @@ const Login = () => {
 
   return (
     <div className="h-screen flex justify-center items-center bg-gray-100 text-black">
-      <div className="w-full max-w-[420px] h-screen flex flex-col justify-between bg-white p-10 rounded-lg shadow-md">
+      <div className="w-full max-w-[420px] flex flex-col justify-center bg-white p-10 rounded-lg shadow-md">
         <div className="flex justify-center mb-6">
           <img src={logo} alt="Logo Passa a Bola" className="w-16" />
         </div>
@@ -46,20 +45,14 @@ const Login = () => {
               type="email"
               placeholder="teste@gmail.com"
               value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                if (erro) setErro("");
-              }}
+              onChange={(e) => { setEmail(e.target.value); if (erro) setErro(""); }}
             />
             <CampoTexto
               label="Senha"
               type="password"
               placeholder="senha"
               value={senha}
-              onChange={(e) => {
-                setSenha(e.target.value);
-                if (erro) setErro("");
-              }}
+              onChange={(e) => { setSenha(e.target.value); if (erro) setErro(""); }}
             />
 
             {erro && <p className="text-red-500 text-sm mt-1">{erro}</p>}

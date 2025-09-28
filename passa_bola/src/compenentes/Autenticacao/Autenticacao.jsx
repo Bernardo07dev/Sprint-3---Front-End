@@ -17,34 +17,29 @@ export const AuthProvider = ({ children }) => {
   }, [usuario]);
 
   const entrar = async (email, senha) => {
-    try {
-      // Substitua pelo endpoint do seu backend na Vercel
-      const res = await fetch(
-        "https://sprint-3-front-end-copia-git-main-brunas-projects-c2151b40.vercel.app/jogadoras"
-      );
-      const jogadoras = await res.json();
+    // Login do recrutador
+    if (email.trim() === "recrutador@exemplo.com" && senha.trim() === "123456") {
+      const recr = { email, tipo: "recrutador", nome: "Recrutador", foto: null };
+      setUsuario(recr);
+      return recr;
+    }
 
-      // Procura usuário válido entre jogadoras
-      const usuarioValido = jogadoras.find(
+    // Login das jogadoras - busca no backend
+    try {
+      const res = await fetch("https://sprint-3-front-end-copia-git-main-brunas-projects-c2151b40.vercel.app/jogadoras");
+      const jogadoras = await res.json();
+      const jogadoraLogada = jogadoras.find(
         (j) => j.email === email.trim() && j.senha === senha.trim()
       );
-
-      if (usuarioValido) {
-        // Adiciona tipo "atleta"
-        setUsuario({ ...usuarioValido, tipo: "atleta" });
-        return true;
+      if (jogadoraLogada) {
+        const jogadora = { ...jogadoraLogada, tipo: "atleta" };
+        setUsuario(jogadora);
+        return jogadora;
       }
-
-      // Usuário recrutor hardcoded
-      if (email.trim() === "recrutador@exemplo.com" && senha.trim() === "123456") {
-        setUsuario({ email, tipo: "recrutador" });
-        return true;
-      }
-
-      return false;
+      return null;
     } catch (err) {
-      console.error("Erro ao fazer login:", err);
-      return false;
+      console.error("Erro ao buscar jogadoras:", err);
+      return null;
     }
   };
 
