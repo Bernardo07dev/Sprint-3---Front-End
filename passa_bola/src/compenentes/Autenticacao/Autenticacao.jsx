@@ -1,9 +1,8 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
-// Usuários pré-definidos
-const usuarios = [
-  { email: "atleta@exemplo.com", senha: "123456", tipo: "atleta" },
-  { email: "recrutador@exemplo.com", senha: "123456", tipo: "recrutador" },
+// Recrutador fixo
+const usuariosFixos = [
+  { email: "recrutador@exemplo.com", senha: "123456", tipo: "recrutador", nome: "Recrutador", foto: null }
 ];
 
 const AuthContext = createContext();
@@ -22,17 +21,34 @@ export const AuthProvider = ({ children }) => {
     }
   }, [usuario]);
 
-  const entrar = (email, senha) => {
-    const usuarioValido = usuarios.find(
-      (u) => u.email === email.trim() && u.senha === senha.trim()
-    );
+  // Login
+  const entrar = async (email, senha) => {
+    email = email.trim();
+    senha = senha.trim();
 
-    if (usuarioValido) {
-      setUsuario(usuarioValido);
+    // Primeiro verifica se é recrutador
+    const usuarioRecrutador = usuariosFixos.find(u => u.email === email && u.senha === senha);
+    if (usuarioRecrutador) {
+      setUsuario(usuarioRecrutador);
       return true;
     }
 
-    return false;
+    // Se não, busca as jogadoras no backend
+    try {
+      const res = await fetch("http://localhost:5000/jogadoras");
+      const jogadoras = await res.json();
+
+      const jogadoraLogada = jogadoras.find(j => j.email === email && j.senha === senha);
+
+      if (jogadoraLogada) {
+        setUsuario({ ...jogadoraLogada, tipo: "atleta" });
+        return true;
+      }
+    } catch (err) {
+      console.error("Erro ao buscar jogadoras:", err);
+    }
+
+    return false; // login falhou
   };
 
   const sair = () => setUsuario(null);

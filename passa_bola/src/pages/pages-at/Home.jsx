@@ -1,17 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../compenentes/Autenticacao/Autenticacao.jsx";
 import notif from "../../assets/icons/notif.svg";
-import jogadora from "../../assets/images/jogadora.png";
 import barra from "../../assets/icons/barra.svg";
 import palm from "../../assets/icons/Palm.svg";
 import corin from "../../assets/icons/Corin.svg";
 
 import Footer from "../../compenentes/Footer/Footer";
 import Card from "../../compenentes/Card.jsx/Card";
-import CardNoticia from "../../compenentes/Card.jsx/Card_Noticia";
 import Noticias from '../api/Noticias';
+
 const Home = () => {
   const navigate = useNavigate();
+  const { usuario } = useAuth(); // pega o usuário logado
+
+ 
+  const fotoUsuario = usuario?.foto || "/assets/images/jogadora.png";
+  const nomeUsuario = usuario?.nome || "Jogadora";
 
   return (
     <div className="min-h-screen flex justify-center bg-gray-100 text-black">
@@ -24,18 +29,18 @@ const Home = () => {
           </div>
 
           {/* Perfil do Usuário */}
-          <h2 className="font-semibold text-lg mb-2">Olá, Luciane!</h2>
+          <h2 className="font-semibold text-lg mb-2">Olá, {nomeUsuario}!</h2>
           <div className="mb-4 flex gap-4 p-4 bg-gray-200 rounded-lg border border-transparent">
             <img
-              src={jogadora}
-              alt="Luciane Barbosa"
+              src={fotoUsuario}
+              alt={nomeUsuario}
               className="w-20 h-20 object-cover rounded-full"
             />
             <div className="flex flex-col justify-between flex-1">
               <div>
-                <h3 className="font-semibold">Luciane Barbosa</h3>
-                <p className="font-light mb-1">07/05/2007</p>
-                <p className="text-[15px]">Perfil Incompleto</p>
+                <h3 className="font-semibold">{nomeUsuario}</h3>
+                <p className="font-light mb-1">Perfil Incompleto</p>
+                <p className="text-[15px]">Complete seu perfil para melhores resultados</p>
               </div>
               <div className="flex flex-col gap-1">
                 <img src={barra} alt="barra de progresso" className="w-full" />
@@ -54,8 +59,7 @@ const Home = () => {
           <p className="font-light mb-4">
             Recrutadores têm pouco tempo. Coloque suas{" "}
             <strong>
-              3 melhores jogadas nos primeiros 30 segundos do seu vídeo de
-              highlights.
+              3 melhores jogadas nos primeiros 30 segundos do seu vídeo de highlights.
             </strong>
           </p>
 
@@ -72,15 +76,10 @@ const Home = () => {
             desc="Sub-15 e Sub-17 / 06 de Agosto de 2025"
           />
 
-          
           {/* Notícias Passa Bola */}
           <div className="pb-20 pt-6">
             <h1 className="font-semibold text-lg mb-2">Notícias Passa Bola</h1>
-
-            {/* Carrega notícias */}
             <Noticias limit={2} />
-
-            {/* Botão Ver Mais */}
             <button
               onClick={() => navigate("/noticias")}
               className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"

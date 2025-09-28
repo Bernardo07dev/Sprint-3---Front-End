@@ -6,34 +6,32 @@ import logo from "../assets/icons/Logo.svg";
 
 const Login = () => {
   const navegar = useNavigate();
-  const { entrar } = useAuth();
+  const { entrar, usuario } = useAuth();
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
 
-  const enviarFormulario = (e) => {
-  e.preventDefault();
+  const enviarFormulario = async (e) => {
+    e.preventDefault();
 
-  const sucesso = entrar(email, senha);
+    const sucesso = await entrar(email, senha); // faz login async
 
-  if (sucesso) {
-    // Verifica se é recrutor ou atleta
-    const emailRecrutador = "recrutador@exemplo.com";
-    if (email.trim() === emailRecrutador) {
-      navegar("/homerec"); 
+    if (sucesso) {
+      if (usuario?.tipo === "recrutador") {
+        navegar("/homerec");
+      } else {
+        navegar("/home");
+      }
     } else {
-      navegar("/home"); 
+      const mensagemErro = "Email ou senha incorretos!";
+      setErro(mensagemErro);
+      alert(mensagemErro);
     }
-  } else {
-    const mensagemErro = "Email ou senha incorretos! O login está no readme ou no teams";
-    setErro(mensagemErro);
-    alert(mensagemErro); 
-  }
-};
+  };
 
   return (
-    <div className="h-screen flex justify-center items-center bg-gray-100 text-black">
+ <div className="h-screen flex justify-center items-center bg-gray-100 text-black">
       <div className="w-full max-w-[420px]  h-screen justify-center  vh-100 flex flex-col justify-between bg-white p-10 rounded-lg shadow-md">
         <div className="flex justify-center mb-6">
           <img src={logo} alt="Logo Passa a Bola" className="w-16" />
