@@ -11,7 +11,7 @@ const HomeRec = () => {
   const [jogadoras, setJogadoras] = useState([]);
 
   useEffect(() => {
-      fetch("/jogadoras.json")
+      fetch("https://backend-jogadoras.vercel.app/jogadoras")
       .then(res => res.json())
       .then(data => setJogadoras(data))
       .catch(err => console.error("Erro ao buscar jogadoras:", err));
